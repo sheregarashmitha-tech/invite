@@ -1,489 +1,687 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ashmitha & Kaustubh - Wedding Invitation</title>
-<!-- Fonts & Icons -->
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ashmitha & Kaustubh - Luxury Wedding Invitation</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Tailwind CSS for modern utility styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gold: {
+                            100: '#FAF2DA',
+                            300: '#E6CA85',
+                            500: '#C5A059',
+                            700: '#9B7833',
+                        },
+                        darkBg: '#0A0908',
+                    },
+                    fontFamily: {
+                        serif: ['Cinzel', 'serif'],
+                        script: ['Great Vibes', 'cursive'],
+                        sans: ['Montserrat', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
 
-<style>
-:root {
---main-color: #6b5b4e;
---accent-gold: #c5a059;
---text-color: #ffffff;
---card-bg: rgba(0, 0, 0, 0.6);
-}
+    <style>
+        :root {
+            --accent-gold: #c5a059;
+            --gold-glow: rgba(197, 160, 89, 0.4);
+            --card-bg: rgba(15, 15, 18, 0.65);
+        }
 
-* {
-margin: 0;
-padding: 0;
-box-sizing: border-box;
-}
+        /* Smooth scrolling behavior */
+        html {
+            scroll-behavior: smooth;
+        }
 
-body {
-font-family: 'Poppins', sans-serif;
-color: var(--text-color);
-line-height: 1.8;
-overflow-x: hidden;
-background-color: #000;
-}
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #0A0908;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
 
-h1, h2, h3 {
-font-family: 'Playfair Display', serif;
-}
+        /* Fixed background crossfade slider */
+        .bg-slider {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -2;
+        }
 
-/* Fixed Background Slider for Dynamic Scrolling */
-.bg-slider {
-position: fixed;
-top: 0;
-left: 0;
-width: 100vw;
-height: 100vh;
-z-index: -1;
-}
+        .bg-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transform: scale(1.05);
+            transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1), transform 1.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
 
-.bg-slide {
-position: absolute;
-top: 0;
-left: 0;
-width: 100%;
-height: 100%;
-background-size: cover;
-background-position: center;
-opacity: 0;
-transition: opacity 1s ease-in-out;
-}
+        .bg-slide.active {
+            opacity: 1;
+            transform: scale(1);
+        }
 
-.bg-slide.active {
-opacity: 1;
-}
+        /* Radial overlay for luxury atmosphere */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: radial-gradient(circle, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.75) 100%);
+            z-index: -1;
+            pointer-events: none;
+        }
 
-/* Dark Overlay to make text readable over background photos */
-.overlay {
-position: fixed;
-top: 0;
-left: 0;
-width: 100vw;
-height: 100vh;
-background: rgba(0, 0, 0, 0.45);
-z-index: -1;
-}
+        /* Custom Glassmorphism Box */
+        .glass-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid rgba(197, 160, 89, 0.25);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), inset 0 0 15px rgba(197, 160, 89, 0.05);
+            border-radius: 16px;
+            transition: transform 0.4s ease, border-color 0.4s ease;
+        }
 
-/* Music Floating Control Button */
-.music-control {
-position: fixed;
-bottom: 20px;
-right: 20px;
-background: var(--accent-gold);
-color: white;
-border: none;
-width: 50px;
-height: 50px;
-border-radius: 50%;
-cursor: pointer;
-z-index: 1000;
-display: flex;
-justify-content: center;
-align-items: center;
-font-size: 1.2rem;
-box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-transition: transform 0.3s;
-}
+        .glass-card:hover {
+            border-color: rgba(197, 160, 89, 0.5);
+        }
 
-.music-control:hover {
-transform: scale(1.1);
-}
+        /* Pulsing audio visualizer animation */
+        @keyframes pulse-ring {
+            0% {
+                transform: scale(0.9);
+                box-shadow: 0 0 0 0 rgba(197, 160, 89, 0.7);
+            }
+            70% {
+                transform: scale(1.05);
+                box-shadow: 0 0 0 14px rgba(197, 160, 89, 0);
+            }
+            100% {
+                transform: scale(0.9);
+                box-shadow: 0 0 0 0 rgba(197, 160, 89, 0);
+            }
+        }
 
-/* Sections Structure */
-section {
-min-height: 100vh;
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-text-align: center;
-padding: 80px 20px;
-position: relative;
-}
+        .music-pulse {
+            animation: pulse-ring 2.5s infinite;
+        }
 
-.content-box {
-background: var(--card-bg);
-backdrop-filter: blur(8px);
--webkit-backdrop-filter: blur(8px);
-padding: 40px;
-border-radius: 12px;
-max-width: 750px;
-width: 100%;
-box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-border: 1px solid rgba(255,255,255,0.1);
-}
+        /* Shimmer Gold Effect on Titles */
+        .gold-shimmer {
+            background: linear-gradient(135deg, #FAF2DA 0%, #C5A059 50%, #FAF2DA 100%);
+            background-size: 200% auto;
+            color: transparent;
+            -webkit-background-clip: text;
+            background-clip: text;
+            animation: shimmer 4s linear infinite;
+        }
 
-h2.section-title {
-font-size: 3rem;
-color: #f4ebd0;
-margin-bottom: 15px;
-}
+        @keyframes shimmer {
+            to {
+                background-position: 200% center;
+            }
+        }
 
-.divider {
-width: 60px;
-height: 2px;
-background-color: var(--accent-gold);
-margin: 0 auto 25px auto;
-}
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0A0908;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #c5a059;
+            border-radius: 4px;
+        }
 
-/* Hero Header */
-.hero h4 {
-letter-spacing: 4px;
-text-transform: uppercase;
-font-weight: 400;
-font-size: 1.1rem;
-margin-bottom: 15px;
-color: #f4ebd0;
-}
+        /* Floating Audio Control Panel styling */
+        .audio-widget {
+            transition: all 0.3s ease;
+        }
 
-.hero h1 {
-font-size: 5rem;
-color: #fff;
-margin-bottom: 10px;
-text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
-}
+        .audio-expanded {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
 
-.hero p {
-font-size: 1.2rem;
-letter-spacing: 2px;
-}
-
-/* Countdown */
-.countdown-wrapper {
-display: flex;
-justify-content: center;
-gap: 15px;
-margin-top: 30px;
-}
-
-.box {
-background: rgba(255, 255, 255, 0.1);
-padding: 15px;
-border-radius: 8px;
-min-width: 75px;
-border: 1px solid rgba(255,255,255,0.2);
-}
-
-.box span {
-display: block;
-font-size: 1.8rem;
-font-weight: 600;
-color: var(--accent-gold);
-}
-
-.box p {
-font-size: 0.75rem;
-text-transform: uppercase;
-letter-spacing: 1px;
-}
-
-/* Events Grid */
-.event-grid {
-display: grid;
-grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-gap: 20px;
-margin-top: 20px;
-}
-
-.event-card {
-background: rgba(255, 255, 255, 0.08);
-padding: 25px;
-border-radius: 8px;
-text-align: left;
-border-left: 4px solid var(--accent-gold);
-}
-
-.event-card h3 {
-font-size: 1.5rem;
-color: #f4ebd0;
-margin-bottom: 10px;
-}
-
-.event-card p {
-font-size: 0.95rem;
-margin: 6px 0;
-}
-
-.event-card i {
-color: var(--accent-gold);
-margin-right: 8px;
-}
-
-/* Photo Gallery Grid */
-.gallery-grid {
-display: grid;
-grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-gap: 15px;
-margin-top: 20px;
-}
-
-.gallery-item {
-overflow: hidden;
-border-radius: 8px;
-height: 200px;
-border: 1px solid rgba(255,255,255,0.2);
-}
-
-.gallery-item img {
-width: 100%;
-height: 100%;
-object-fit: cover;
-transition: transform 0.4s ease;
-}
-
-.gallery-item img:hover {
-transform: scale(1.1);
-}
-
-/* RSVP Form */
-.rsvp-form {
-display: flex;
-flex-direction: column;
-gap: 15px;
-text-align: left;
-margin-top: 20px;
-}
-
-.form-group label {
-display: block;
-font-size: 0.85rem;
-margin-bottom: 5px;
-color: #f4ebd0;
-}
-
-.form-group input, .form-group select {
-width: 100%;
-padding: 10px;
-border: 1px solid rgba(255,255,255,0.3);
-border-radius: 4px;
-background: rgba(0,0,0,0.4);
-color: white;
-font-family: 'Poppins', sans-serif;
-}
-
-.form-group input option {
-background: #222;
-}
-
-.submit-btn {
-background: var(--accent-gold);
-color: white;
-border: none;
-width: 100%;
-padding: 12px;
-font-size: 1rem;
-font-weight: 500;
-letter-spacing: 1px;
-border-radius: 4px;
-cursor: pointer;
-transition: background 0.3s;
-margin-top: 10px;
-}
-
-.submit-btn:hover {
-background: #b08d45;
-}
-
-footer {
-padding: 20px;
-font-size: 0.85rem;
-background: rgba(0,0,0,0.8);
-letter-spacing: 1px;
-}
-
-@media (max-width: 768px) {
-.hero h1 { font-size: 3.2rem; }
-.content-box { padding: 25px 15px; }
-h2.section-title { font-size: 2.3rem; }
-}
-</style>
+        .audio-collapsed {
+            opacity: 0;
+            transform: translateY(15px);
+            pointer-events: none;
+        }
+    </style>
 </head>
-<body>
+<body class="text-gray-100 antialiased selection:bg-gold-500 selection:text-black">
 
-<!-- Fixed Background Image Slider (Changes photos as you scroll down sections) -->
-<div class="bg-slider">
-<div class="bg-slide active" style="background-image: url('https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=1950&q=80');"></div>
-<div class="bg-slide" style="background-image: url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1950&q=80');"></div>
-<div class="bg-slide" style="background-image: url('https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1950&q=80');"></div>
-<div class="bg-slide" style="background-image: url('https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=1950&q=80');"></div>
-<div class="bg-slide" style="background-image: url('https://images.unsplash.com/photo-1537633552985-df8429e8048b?auto=format&fit=crop&w=1950&q=80');"></div>
-</div>
-<div class="overlay"></div>
+    <!-- ================================================================= -->
+    <!-- QUICK CUSTOMIZATION INSTRUCTIONS FOR THE OWNER                    -->
+    <!-- ================================================================= -->
+    <!-- 
+      1. SWAPPING BACKGROUND & GALLERY IMAGES:
+         Search for "IMAGE CUSTOMIZATION SECTION" below to replace Unsplash URLs with your own image URLs.
+      2. SWAPPING BACKGROUND MUSIC:
+         Search for "<audio id='bgMusic'>" in the document and update the 'src' attribute.
+      3. CHANGING EVENT DATE & COUNTDOWN:
+         Find "TARGET_WEDDING_DATE" in the <script> section at the bottom.
+      4. UPDATE LOCATION MAP LINKS:
+         Look for "https://maps.google.com" links in Section 3 and update to your venue's exact Google Maps link.
+    -->
 
-<!-- Background Music Audio (Plays soft instrumental loop) -->
-<audio id="bgMusic" loop>
-<source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf7f6.mp3?filename=wedding-day-110290.mp3" type="audio/mpeg">
-</audio>
+    <!-- Background Slideshow Images (IMAGE CUSTOMIZATION SECTION 1) -->
+    <div class="bg-slider" id="bgSlider">
+        <!-- Slide 0: Hero / Couple Portrait -->
+        <div class="bg-slide active" style="background-image: url('https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=2000&q=80');"></div>
+        <!-- Slide 1: Couple / Story Section -->
+        <div class="bg-slide" style="background-image: url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=2000&q=80');"></div>
+        <!-- Slide 2: Venue / Events Section -->
+        <div class="bg-slide" style="background-image: url('https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=2000&q=80');"></div>
+        <!-- Slide 3: Gallery Section -->
+        <div class="bg-slide" style="background-image: url('https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=2000&q=80');"></div>
+        <!-- Slide 4: RSVP Section -->
+        <div class="bg-slide" style="background-image: url('https://images.unsplash.com/photo-1537633552985-df8429e8048b?auto=format&fit=crop&w=2000&q=80');"></div>
+    </div>
+    
+    <div class="overlay"></div>
 
-<!-- Music Toggle Floating Button -->
-<button class="music-control" id="musicBtn" onclick="toggleMusic()" title="Play/Pause Music">
-<i class="fa-solid fa-music" id="musicIcon"></i>
-</button>
+    <!-- Background Music Player (MUSIC CUSTOMIZATION SECTION) -->
+    <!-- Replace the src URL with your preferred MP3 audio track -->
+    <audio id="bgMusic" loop preload="auto">
+        <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf7f6.mp3?filename=wedding-day-110290.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
 
-<!-- Section 1: Hero / Save The Date -->
-<section id="section-0" class="hero">
-<h4>Save The Date</h4>
-<h1>Ashmitha & Kaustubh</h1>
-<p><i class="fa-regular fa-calendar"></i> November 18, 2026</p>
-</section>
+    <!-- Floating Audio Control Widget -->
+    <div class="fixed bottom-6 right-6 z-50 flex flex-col items-end">
+        <!-- Audio Options Drawer -->
+        <div id="audioDrawer" class="audio-widget audio-collapsed mb-3 glass-card p-4 rounded-xl flex flex-col gap-3 min-w-[200px] text-xs">
+            <div class="flex items-center justify-between border-b border-gold-500/20 pb-2">
+                <span class="font-serif text-gold-300 tracking-wider">Audio Settings</span>
+                <i class="fa-solid fa-sliders text-gold-500"></i>
+            </div>
+            <!-- Volume Control Slider -->
+            <div class="flex items-center gap-2">
+                <i class="fa-solid fa-volume-low text-gold-300"></i>
+                <input type="range" id="volumeSlider" min="0" max="1" step="0.05" value="0.7" class="w-full accent-gold-500 h-1 bg-gray-700 rounded-lg appearance-none cursor-pointer">
+                <i class="fa-solid fa-volume-high text-gold-300"></i>
+            </div>
+            <p class="text-[10px] text-gray-400 italic">"Wedding Serenade - Instrumental"</p>
+        </div>
 
-<!-- Section 2: Story / Countdown -->
-<section id="section-1">
-<div class="content-box">
-<h2 class="section-title">We Are Getting Married</h2>
-<div class="divider"></div>
-<p>Together with our families, we joyfully invite you to celebrate our special day. Your love and company mean the world to us.</p>
+        <!-- Main Audio Toggle Button -->
+        <div class="relative">
+            <button id="musicBtn" onclick="toggleMusic()" class="music-pulse bg-gold-500 hover:bg-gold-700 text-black font-semibold w-14 h-14 rounded-full flex items-center justify-center shadow-2xl transition duration-300 focus:outline-none" title="Play/Pause Wedding Music">
+                <i id="musicIcon" class="fa-solid fa-music text-xl"></i>
+            </button>
+            <button onclick="toggleAudioDrawer()" class="absolute -top-1 -right-1 bg-black/80 hover:bg-black border border-gold-500/50 text-gold-300 w-6 h-6 rounded-full flex items-center justify-center text-[10px] shadow-md" title="Sound Settings">
+                <i class="fa-solid fa-gear"></i>
+            </button>
+        </div>
+    </div>
 
-<div class="countdown-wrapper">
-<div class="box"><span id="days">00</span><p>Days</p></div>
-<div class="box"><span id="hours">00</span><p>Hours</p></div>
-<div class="box"><span id="mins">00</span><p>Mins</p></div>
-<div class="box"><span id="secs">00</span><p>Secs</p></div>
-</div>
-</div>
-</section>
+    <!-- Audio Start Prompt Overlay for Auto-play Restriction Bypass -->
+    <div id="audioPrompt" class="fixed bottom-24 right-6 z-40 glass-card p-3 px-4 rounded-lg text-xs text-gold-100 flex items-center gap-2 animate-bounce cursor-pointer" onclick="toggleMusic()">
+        <i class="fa-solid fa-circle-play text-gold-500 text-base"></i>
+        <span>Click to play background music</span>
+    </div>
 
-<!-- Section 3: Events -->
-<section id="section-2">
-<div class="content-box">
-<h2 class="section-title">When & Where</h2>
-<div class="divider"></div>
+    <!-- SECTION 1: HERO / SAVE THE DATE -->
+    <section id="section-0" class="min-h-screen flex flex-col justify-center items-center text-center px-4 relative py-20">
+        <div class="glass-card max-w-4xl w-full p-8 md:p-14 border border-gold-500/30 flex flex-col items-center">
+            <div class="text-gold-300 text-xs md:text-sm tracking-[0.3em] uppercase mb-4 font-serif">
+                <i class="fa-solid fa-dharmachakra text-gold-500 mr-2"></i> The Wedding Celebration Of
+            </div>
+            
+            <h1 class="font-script text-5xl md:text-8xl gold-shimmer mb-4 py-2">
+                Ashmitha <span class="font-serif text-3xl md:text-5xl text-gold-300">&amp;</span> Kaustubh
+            </h1>
 
-<div class="event-grid">
-<div class="event-card">
-<h3>Ceremony</h3>
-<p><i class="fa-regular fa-clock"></i> 3:00 PM</p>
-<p><i class="fa-regular fa-calendar"></i> Nov 18, 2026</p>
-<p><i class="fa-solid fa-location-dot"></i> The Glasshouse Gardens</p>
-</div>
-<div class="event-card">
-<h3>Reception</h3>
-<p><i class="fa-regular fa-clock"></i> 6:30 PM</p>
-<p><i class="fa-regular fa-calendar"></i> Nov 18, 2026</p>
-<p><i class="fa-solid fa-location-dot"></i> Grand Azure Ballroom</p>
-</div>
-</div>
-</div>
-</section>
+            <div class="w-32 h-[1px] bg-gradient-to-r from-transparent via-gold-500 to-transparent my-6"></div>
 
-<!-- Section 4: Gallery -->
-<section id="section-3">
-<div class="content-box">
-<h2 class="section-title">Our Moments</h2>
-<div class="divider"></div>
+            <p class="font-serif text-lg md:text-2xl tracking-widest text-gray-200 mb-8">
+                NOVEMBER 18, 2026 &bull; MUMBAI, INDIA
+            </p>
 
-<div class="gallery-grid">
-<div class="gallery-item"><img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=600&q=80" alt="Gallery 1"></div>
-<div class="gallery-item"><img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=600&q=80" alt="Gallery 2"></div>
-<div class="gallery-item"><img src="https://images.unsplash.com/photo-1537633552985-df8429e8048b?auto=format&fit=crop&w=600&q=80" alt="Gallery 3"></div>
-</div>
-</div>
-</section>
+            <a href="#section-1" class="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-gold-500/50 text-gold-300 text-xs uppercase tracking-widest hover:bg-gold-500 hover:text-black transition duration-300 group">
+                <span>Explore Invitation</span>
+                <i class="fa-solid fa-chevron-down text-xs group-hover:translate-y-1 transition-transform"></i>
+            </a>
+        </div>
+    </section>
 
-<!-- Section 5: RSVP -->
-<section id="section-4">
-<div class="content-box">
-<h2 class="section-title">Be Our Guest</h2>
-<div class="divider"></div>
-<p>Please respond by October 20, 2026</p>
+    <!-- SECTION 2: OUR STORY & COUNTDOWN -->
+    <section id="section-1" class="min-h-screen flex flex-col justify-center items-center text-center px-4 relative py-20">
+        <div class="glass-card max-w-3xl w-full p-8 md:p-12">
+            <div class="text-gold-500 text-2xl mb-2"><i class="fa-solid fa-heart"></i></div>
+            <h2 class="font-serif text-3xl md:text-5xl text-gold-100 mb-2">We Are Getting Married</h2>
+            <div class="w-20 h-0.5 bg-gold-500 mx-auto my-4"></div>
+            
+            <p class="text-gray-300 text-sm md:text-base leading-relaxed font-light max-w-xl mx-auto mb-10">
+                Together with our beloved families, we joyfully invite you to share in our happiness as we unite our lives in love, laughter, and lifelong devotion.
+            </p>
 
-<form class="rsvp-form" id="inviteForm" onsubmit="submitRSVP(event)">
-<div class="form-group">
-<label>Full Name</label>
-<input type="text" required placeholder="Enter your name">
-</div>
-<div class="form-group">
-<label>Will you attend?</label>
-<select required>
-<option value="" disabled selected>Select an option</option>
-<option value="yes">Accepts with pleasure</option>
-<option value="no">Declines with regret</option>
-</select>
-</div>
-<div class="form-group">
-<label>Number of Guests</label>
-<input type="number" min="1" max="4" value="1">
-</div>
-<button type="submit" class="submit-btn">Send RSVP</button>
-</form>
-</div>
-<footer>
-<p>&copy; 2026 Ashmitha & Kaustubh. All Rights Reserved.</p>
-</footer>
-</section>
+            <!-- Countdown Container -->
+            <div class="text-xs uppercase tracking-widest text-gold-300 font-serif mb-4">Counting Down To Our Forever</div>
+            <div id="countdown" class="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-lg mx-auto">
+                <div class="glass-card p-4 rounded-xl border border-gold-500/20">
+                    <span id="days" class="block font-serif text-3xl md:text-4xl text-gold-300 font-bold">00</span>
+                    <span class="text-[10px] uppercase tracking-widest text-gray-400">Days</span>
+                </div>
+                <div class="glass-card p-4 rounded-xl border border-gold-500/20">
+                    <span id="hours" class="block font-serif text-3xl md:text-4xl text-gold-300 font-bold">00</span>
+                    <span class="text-[10px] uppercase tracking-widest text-gray-400">Hours</span>
+                </div>
+                <div class="glass-card p-4 rounded-xl border border-gold-500/20">
+                    <span id="mins" class="block font-serif text-3xl md:text-4xl text-gold-300 font-bold">00</span>
+                    <span class="text-[10px] uppercase tracking-widest text-gray-400">Minutes</span>
+                </div>
+                <div class="glass-card p-4 rounded-xl border border-gold-500/20">
+                    <span id="secs" class="block font-serif text-3xl md:text-4xl text-gold-300 font-bold">00</span>
+                    <span class="text-[10px] uppercase tracking-widest text-gray-400">Seconds</span>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<!-- JavaScript Handling Scroll Backgrounds, Music, and Countdown -->
-<script>
-// 1. Dynamic Background Image Scroll Effect
-const sections = document.querySelectorAll("section");
-const slides = document.querySelectorAll(".bg-slide");
+    <!-- SECTION 3: EVENTS & SCHEDULE -->
+    <section id="section-2" class="min-h-screen flex flex-col justify-center items-center text-center px-4 relative py-20">
+        <div class="glass-card max-w-4xl w-full p-8 md:p-12">
+            <h2 class="font-serif text-3xl md:text-5xl text-gold-100 mb-2">When &amp; Where</h2>
+            <div class="w-20 h-0.5 bg-gold-500 mx-auto my-4"></div>
+            <p class="text-gray-300 text-sm mb-10 font-light">Join us for the celebrations across our special day</p>
 
-window.addEventListener("scroll", () => {
-let current = "";
-sections.forEach((section, index) => {
-const sectionTop = section.offsetTop;
-if (pageYOffset >= sectionTop - window.innerHeight / 3) {
-current = index;
-}
-});
+            <!-- Events Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
+                <!-- Ceremony Card -->
+                <div class="glass-card p-6 border-l-4 border-l-gold-500 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-2">
+                            <h3 class="font-serif text-2xl text-gold-300">Wedding Ceremony</h3>
+                            <span class="text-xs bg-gold-500/10 text-gold-300 px-3 py-1 rounded-full border border-gold-500/30">Traditional</span>
+                        </div>
+                        <p class="text-xs text-gray-400 mb-4"><i class="fa-regular fa-clock text-gold-500 mr-2"></i>3:00 PM IST | Nov 18, 2026</p>
+                        <p class="text-sm text-gray-300 mb-2"><i class="fa-solid fa-location-dot text-gold-500 mr-2"></i>The Glasshouse Gardens</p>
+                        <p class="text-xs text-gray-400 mb-6 leading-relaxed">Royal Palm Avenue, South Mumbai, India</p>
+                    </div>
+                    
+                    <div class="flex flex-wrap gap-2 pt-4 border-t border-white/10">
+                        <a href="https://maps.google.com/?q=The+Glasshouse+Gardens+Mumbai" target="_blank" rel="noopener noreferrer" class="flex-1 text-center bg-gold-500/20 hover:bg-gold-500 hover:text-black text-gold-300 text-xs py-2 px-3 rounded transition duration-300 border border-gold-500/30 flex items-center justify-center gap-1">
+                            <i class="fa-solid fa-map-location-dot"></i> Get Directions
+                        </a>
+                        <button onclick="addToCalendar('Wedding Ceremony', 'The Glasshouse Gardens, Mumbai', '2026-11-18T15:00:00')" class="flex-1 text-center bg-white/5 hover:bg-white/10 text-gray-200 text-xs py-2 px-3 rounded transition duration-300 border border-white/10 flex items-center justify-center gap-1">
+                            <i class="fa-regular fa-calendar-plus"></i> Add Calendar
+                        </button>
+                    </div>
+                </div>
 
-slides.forEach((slide, index) => {
-slide.classList.remove("active");
-if (index === current) {
-slide.classList.add("active");
-}
-});
-});
+                <!-- Reception Card -->
+                <div class="glass-card p-6 border-l-4 border-l-gold-500 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-2">
+                            <h3 class="font-serif text-2xl text-gold-300">Grand Reception</h3>
+                            <span class="text-xs bg-gold-500/10 text-gold-300 px-3 py-1 rounded-full border border-gold-500/30">Gala Dinner</span>
+                        </div>
+                        <p class="text-xs text-gray-400 mb-4"><i class="fa-regular fa-clock text-gold-500 mr-2"></i>7:00 PM IST | Nov 18, 2026</p>
+                        <p class="text-sm text-gray-300 mb-2"><i class="fa-solid fa-location-dot text-gold-500 mr-2"></i>Grand Azure Ballroom</p>
+                        <p class="text-xs text-gray-400 mb-6 leading-relaxed">The Azure Luxury Hotel, South Mumbai, India</p>
+                    </div>
 
-// 2. Music Play / Pause Control
-const bgMusic = document.getElementById("bgMusic");
-const musicIcon = document.getElementById("musicIcon");
-let isPlaying = false;
+                    <div class="flex flex-wrap gap-2 pt-4 border-t border-white/10">
+                        <a href="https://maps.google.com/?q=Grand+Azure+Ballroom+Mumbai" target="_blank" rel="noopener noreferrer" class="flex-1 text-center bg-gold-500/20 hover:bg-gold-500 hover:text-black text-gold-300 text-xs py-2 px-3 rounded transition duration-300 border border-gold-500/30 flex items-center justify-center gap-1">
+                            <i class="fa-solid fa-map-location-dot"></i> Get Directions
+                        </a>
+                        <button onclick="addToCalendar('Grand Reception', 'Grand Azure Ballroom, Mumbai', '2026-11-18T19:00:00')" class="flex-1 text-center bg-white/5 hover:bg-white/10 text-gray-200 text-xs py-2 px-3 rounded transition duration-300 border border-white/10 flex items-center justify-center gap-1">
+                            <i class="fa-regular fa-calendar-plus"></i> Add Calendar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-function toggleMusic() {
-if (isPlaying) {
-bgMusic.pause();
-musicIcon.classList.remove("fa-pause");
-musicIcon.classList.add("fa-music");
-} else {
-bgMusic.play();
-musicIcon.classList.remove("fa-music");
-musicIcon.classList.add("fa-pause");
-}
-isPlaying = !isPlaying;
-}
+    <!-- SECTION 4: PHOTO GALLERY -->
+    <section id="section-3" class="min-h-screen flex flex-col justify-center items-center text-center px-4 relative py-20">
+        <div class="glass-card max-w-5xl w-full p-8 md:p-12">
+            <h2 class="font-serif text-3xl md:text-5xl text-gold-100 mb-2">Our Gallery</h2>
+            <div class="w-20 h-0.5 bg-gold-500 mx-auto my-4"></div>
+            <p class="text-gray-300 text-sm mb-8 font-light">A glimpse into our journey of love</p>
 
-// 3. Countdown Timer
-const targetDate = new Date("Nov 18, 2026 15:00:00").getTime();
+            <!-- Photo Gallery Grid (IMAGE CUSTOMIZATION SECTION 2) -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                <div class="group relative overflow-hidden rounded-xl border border-gold-500/20 aspect-square cursor-pointer" onclick="openLightbox(0)">
+                    <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=800&q=80" alt="Moment 1" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center text-gold-300 text-xl">
+                        <i class="fa-solid fa-magnifying-glass-plus"></i>
+                    </div>
+                </div>
 
-function runCountdown() {
-const now = new Date().getTime();
-const difference = targetDate - now;
+                <div class="group relative overflow-hidden rounded-xl border border-gold-500/20 aspect-square cursor-pointer" onclick="openLightbox(1)">
+                    <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=800&q=80" alt="Moment 2" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center text-gold-300 text-xl">
+                        <i class="fa-solid fa-magnifying-glass-plus"></i>
+                    </div>
+                </div>
 
-if (difference < 0) return;
+                <div class="group relative overflow-hidden rounded-xl border border-gold-500/20 aspect-square cursor-pointer" onclick="openLightbox(2)">
+                    <img src="https://images.unsplash.com/photo-1537633552985-df8429e8048b?auto=format&fit=crop&w=800&q=80" alt="Moment 3" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center text-gold-300 text-xl">
+                        <i class="fa-solid fa-magnifying-glass-plus"></i>
+                    </div>
+                </div>
 
-document.getElementById("days").innerText = Math.floor(difference / (1000 * 60 * 60 * 24));
-document.getElementById("hours").innerText = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-document.getElementById("mins").innerText = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-document.getElementById("secs").innerText = Math.floor((difference % (1000 * 60)) / 1000);
-}
+                <div class="group relative overflow-hidden rounded-xl border border-gold-500/20 aspect-square cursor-pointer" onclick="openLightbox(3)">
+                    <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80" alt="Moment 4" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center text-gold-300 text-xl">
+                        <i class="fa-solid fa-magnifying-glass-plus"></i>
+                    </div>
+                </div>
 
-setInterval(runCountdown, 1000);
-runCountdown();
+                <div class="group relative overflow-hidden rounded-xl border border-gold-500/20 aspect-square cursor-pointer" onclick="openLightbox(4)">
+                    <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=800&q=80" alt="Moment 5" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center text-gold-300 text-xl">
+                        <i class="fa-solid fa-magnifying-glass-plus"></i>
+                    </div>
+                </div>
 
-// 4. RSVP Form Handler
-function submitRSVP(e) {
-e.preventDefault();
-alert("Thank you! Your response has been sent.");
-document.getElementById("inviteForm").reset();
-}
-</script>
+                <div class="group relative overflow-hidden rounded-xl border border-gold-500/20 aspect-square cursor-pointer" onclick="openLightbox(5)">
+                    <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&w=800&q=80" alt="Moment 6" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center text-gold-300 text-xl">
+                        <i class="fa-solid fa-magnifying-glass-plus"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox Fullscreen Modal -->
+    <div id="lightbox" class="fixed inset-0 z-50 bg-black/90 hidden backdrop-blur-md flex items-center justify-center p-4">
+        <button onclick="closeLightbox()" class="absolute top-6 right-6 text-white text-3xl hover:text-gold-300 transition"><i class="fa-solid fa-xmark"></i></button>
+        <button onclick="prevLightboxImage()" class="absolute left-4 text-gold-300 text-3xl p-3 hover:scale-125 transition"><i class="fa-solid fa-chevron-left"></i></button>
+        
+        <img id="lightboxImg" src="" alt="Full view" class="max-h-[85vh] max-w-[90vw] object-contain rounded-lg border border-gold-500/30">
+        
+        <button onclick="nextLightboxImage()" class="absolute right-4 text-gold-300 text-3xl p-3 hover:scale-125 transition"><i class="fa-solid fa-chevron-right"></i></button>
+    </div>
+
+    <!-- SECTION 5: RSVP FORM -->
+    <section id="section-4" class="min-h-screen flex flex-col justify-center items-center text-center px-4 relative py-20">
+        <div class="glass-card max-w-xl w-full p-8 md:p-12">
+            <h2 class="font-serif text-3xl md:text-5xl text-gold-100 mb-2">Be Our Guest</h2>
+            <div class="w-20 h-0.5 bg-gold-500 mx-auto my-4"></div>
+            <p class="text-gray-300 text-sm mb-8 font-light">Kindly respond by October 20, 2026</p>
+
+            <form id="rsvpForm" onsubmit="handleRSVPSubmit(event)" class="text-left flex flex-col gap-5">
+                <div>
+                    <label class="block text-xs uppercase tracking-wider text-gold-300 mb-2">Full Name *</label>
+                    <input type="text" id="guestName" required placeholder="e.g. Rahul Sharma" class="w-full bg-black/50 border border-gold-500/30 rounded-lg p-3 text-white focus:outline-none focus:border-gold-500 transition text-sm">
+                </div>
+
+                <div>
+                    <label class="block text-xs uppercase tracking-wider text-gold-300 mb-2">Will you attend? *</label>
+                    <select id="attendance" required class="w-full bg-black/50 border border-gold-500/30 rounded-lg p-3 text-white focus:outline-none focus:border-gold-500 transition text-sm">
+                        <option value="" disabled selected class="bg-darkBg">Please select your response</option>
+                        <option value="Joyfully Accepts" class="bg-darkBg">Joyfully Accepts</option>
+                        <option value="Declines with Regret" class="bg-darkBg">Declines with Regret</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-xs uppercase tracking-wider text-gold-300 mb-2">Number of Attending Guests</label>
+                    <select id="guestCount" class="w-full bg-black/50 border border-gold-500/30 rounded-lg p-3 text-white focus:outline-none focus:border-gold-500 transition text-sm">
+                        <option value="1" class="bg-darkBg">1 Guest</option>
+                        <option value="2" class="bg-darkBg">2 Guests</option>
+                        <option value="3" class="bg-darkBg">3 Guests</option>
+                        <option value="4" class="bg-darkBg">4 Guests</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-xs uppercase tracking-wider text-gold-300 mb-2">Warm Wishes / Dietary Preferences</label>
+                    <textarea id="guestMessage" rows="3" placeholder="Leave a message for the couple..." class="w-full bg-black/50 border border-gold-500/30 rounded-lg p-3 text-white focus:outline-none focus:border-gold-500 transition text-sm resize-none"></textarea>
+                </div>
+
+                <button type="submit" class="mt-2 w-full bg-gold-500 hover:bg-gold-700 text-black font-semibold uppercase tracking-widest text-xs py-4 rounded-lg transition duration-300 shadow-lg">
+                    Send Response
+                </button>
+            </form>
+        </div>
+
+        <footer class="mt-16 text-center text-xs text-gray-500 font-serif tracking-widest">
+            &copy; 2026 ASHMITHA &amp; KAUSTUBH. ALL RIGHTS RESERVED.
+        </footer>
+    </section>
+
+    <!-- RSVP Custom Confirmation Modal (No browser alerts) -->
+    <div id="rsvpModal" class="fixed inset-0 z-50 bg-black/80 hidden backdrop-blur-md flex items-center justify-center p-4">
+        <div class="glass-card max-w-md w-full p-8 text-center border border-gold-500/50">
+            <div class="text-gold-500 text-4xl mb-4"><i class="fa-solid fa-envelope-circle-check"></i></div>
+            <h3 class="font-serif text-2xl text-gold-100 mb-2">Thank You!</h3>
+            <p id="rsvpModalText" class="text-gray-300 text-sm leading-relaxed mb-6"></p>
+            <button onclick="closeRSVPModal()" class="bg-gold-500 text-black font-semibold text-xs uppercase tracking-widest px-6 py-3 rounded-lg hover:bg-gold-700 transition">
+                Close
+            </button>
+        </div>
+    </div>
+
+    <script>
+        /* ==================================================================== */
+        /* 1. SCROLL-SYNCED BACKGROUND SLIDER                                  */
+        /* ==================================================================== */
+        const sections = document.querySelectorAll("section");
+        const slides = document.querySelectorAll(".bg-slide");
+
+        function updateActiveBackground() {
+            let current = 0;
+            const scrollPos = window.pageYOffset || document.documentElement.scrollTop;
+
+            sections.forEach((section, index) => {
+                const sectionTop = section.offsetTop;
+                if (scrollPos >= sectionTop - window.innerHeight / 2) {
+                    current = index;
+                }
+            });
+
+            slides.forEach((slide, index) => {
+                if (index === current) {
+                    slide.classList.add("active");
+                } else {
+                    slide.classList.remove("active");
+                }
+            });
+        }
+
+        window.addEventListener("scroll", updateActiveBackground);
+
+        /* ==================================================================== */
+        /* 2. AUDIO CONTROLLER & VISUALIZER                                     */
+        /* ==================================================================== */
+        const bgMusic = document.getElementById("bgMusic");
+        const musicIcon = document.getElementById("musicIcon");
+        const musicBtn = document.getElementById("musicBtn");
+        const volumeSlider = document.getElementById("volumeSlider");
+        const audioPrompt = document.getElementById("audioPrompt");
+        const audioDrawer = document.getElementById("audioDrawer");
+
+        let isPlaying = false;
+
+        function toggleMusic() {
+            if (isPlaying) {
+                bgMusic.pause();
+                musicIcon.className = "fa-solid fa-music";
+                musicBtn.classList.remove("music-pulse");
+                if (audioPrompt) audioPrompt.style.display = "none";
+            } else {
+                bgMusic.play().then(() => {
+                    musicIcon.className = "fa-solid fa-pause";
+                    musicBtn.classList.add("music-pulse");
+                    if (audioPrompt) audioPrompt.style.display = "none";
+                }).catch((err) => {
+                    console.log("Audio play deferred due to browser policy:", err);
+                });
+            }
+            isPlaying = !isPlaying;
+        }
+
+        function toggleAudioDrawer() {
+            if (audioDrawer.classList.contains("audio-collapsed")) {
+                audioDrawer.classList.remove("audio-collapsed");
+                audioDrawer.classList.add("audio-expanded");
+            } else {
+                audioDrawer.classList.remove("audio-expanded");
+                audioDrawer.classList.add("audio-collapsed");
+            }
+        }
+
+        volumeSlider.addEventListener("input", (e) => {
+            bgMusic.volume = e.target.value;
+        });
+
+        /* ==================================================================== */
+        /* 3. COUNTDOWN TIMER                                                   */
+        /* ==================================================================== */
+        // TARGET WEDDING DATE: Nov 18, 2026, 15:00:00 IST
+        const TARGET_WEDDING_DATE = new Date("Nov 18, 2026 15:00:00").getTime();
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const difference = TARGET_WEDDING_DATE - now;
+
+            if (difference <= 0) {
+                document.getElementById("countdown").innerHTML = `<div class="col-span-4 text-gold-300 font-serif text-2xl">Today is the Day! 🎉</div>`;
+                return;
+            }
+
+            const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerText = days.toString().padStart(2, '0');
+            document.getElementById("hours").innerText = hours.toString().padStart(2, '0');
+            document.getElementById("mins").innerText = minutes.toString().padStart(2, '0');
+            document.getElementById("secs").innerText = seconds.toString().padStart(2, '0');
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        /* ==================================================================== */
+        /* 4. LIGHTBOX GALLERY SYSTEM                                           */
+        /* ==================================================================== */
+        const galleryImages = [
+            "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1600&q=80",
+            "https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=1600&q=80",
+            "https://images.unsplash.com/photo-1537633552985-df8429e8048b?auto=format&fit=crop&w=1600&q=80",
+            "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1600&q=80",
+            "https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=1600&q=80",
+            "https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&w=1600&q=80"
+        ];
+
+        let currentLightboxIdx = 0;
+
+        function openLightbox(index) {
+            currentLightboxIdx = index;
+            document.getElementById("lightboxImg").src = galleryImages[index];
+            document.getElementById("lightbox").classList.remove("hidden");
+        }
+
+        function closeLightbox() {
+            document.getElementById("lightbox").classList.add("hidden");
+        }
+
+        function nextLightboxImage() {
+            currentLightboxIdx = (currentLightboxIdx + 1) % galleryImages.length;
+            document.getElementById("lightboxImg").src = galleryImages[currentLightboxIdx];
+        }
+
+        function prevLightboxImage() {
+            currentLightboxIdx = (currentLightboxIdx - 1 + galleryImages.length) % galleryImages.length;
+            document.getElementById("lightboxImg").src = galleryImages[currentLightboxIdx];
+        }
+
+        /* ==================================================================== */
+        /* 5. RSVP SUBMISSION & LOCALSTORAGE                                    */
+        /* ==================================================================== */
+        function handleRSVPSubmit(e) {
+            e.preventDefault();
+            const name = document.getElementById("guestName").value;
+            const attendance = document.getElementById("attendance").value;
+            const count = document.getElementById("guestCount").value;
+            const msg = document.getElementById("guestMessage").value;
+
+            const rsvpData = {
+                name,
+                attendance,
+                count: attendance === "Joyfully Accepts" ? count : 0,
+                msg,
+                submittedAt: new Date().toISOString()
+            };
+
+            // Save response in LocalStorage
+            localStorage.setItem("wedding_rsvp_" + name.replace(/\s+/g, '_'), JSON.stringify(rsvpData));
+
+            // Display confirmation modal
+            const modalText = attendance === "Joyfully Accepts"
+                ? `Dear ${name}, we are thrilled to celebrate our special day with you! Your RSVP for ${count} guest(s) has been recorded.`
+                : `Dear ${name}, thank you for letting us know. We will miss your presence on our special day!`;
+
+            document.getElementById("rsvpModalText").innerText = modalText;
+            document.getElementById("rsvpModal").classList.remove("hidden");
+
+            document.getElementById("rsvpForm").reset();
+        }
+
+        function closeRSVPModal() {
+            document.getElementById("rsvpModal").classList.add("hidden");
+        }
+
+        /* ==================================================================== */
+        /* 6. ADD TO CALENDAR INTEGRATION                                       */
+        /* ==================================================================== */
+        function addToCalendar(title, location, startDateISO) {
+            const startDate = new Date(startDateISO);
+            const endDate = new Date(startDate.getTime() + (3 * 60 * 60 * 1000)); // 3 hours duration
+
+            const formatCalDate = (d) => d.toISOString().replace(/-|:|\.\d\d\d/g, "");
+
+            const googleCalUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(title)}&dates=${formatCalDate(startDate)}/${formatCalDate(endDate)}&details=${encodeURIComponent('Ashmitha & Kaustubh Wedding Event')}&location=${encodeURIComponent(location)}`;
+
+            window.open(googleCalUrl, '_blank');
+        }
+
+        // Initialize audio prompt auto-dismiss after 8 seconds
+        setTimeout(() => {
+            if (audioPrompt && !isPlaying) {
+                audioPrompt.style.opacity = '0.5';
+            }
+        }, 8000);
+    </script>
 </body>
 </html>
+
