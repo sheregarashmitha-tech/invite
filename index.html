@@ -3,297 +3,487 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Wedding Invitation</title>
-
-<!-- Fonts & Styling -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
+<title>Sophia & Liam - Wedding Invitation</title>
+<!-- Fonts & Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <style>
 :root {
---primary-color: #8b6b43;
---bg-color: #faf8f5;
---text-color: #333333;
---accent-color: #d4af37;
+--main-color: #6b5b4e;
+--accent-gold: #c5a059;
+--text-color: #ffffff;
+--card-bg: rgba(0, 0, 0, 0.6);
 }
 
 * {
-box-sizing: border-box;
 margin: 0;
 padding: 0;
+box-sizing: border-box;
 }
 
 body {
-font-family: 'Montserrat', sans-serif;
-background-color: var(--bg-color);
+font-family: 'Poppins', sans-serif;
 color: var(--text-color);
-text-align: center;
+line-height: 1.8;
 overflow-x: hidden;
+background-color: #000;
 }
 
-/* Cover / Envelope Modal */
-#cover {
+h1, h2, h3 {
+font-family: 'Playfair Display', serif;
+}
+
+/* Fixed Background Slider for Dynamic Scrolling */
+.bg-slider {
 position: fixed;
-inset: 0;
-background-color: #2b2520;
-color: #fff;
+top: 0;
+left: 0;
+width: 100vw;
+height: 100vh;
+z-index: -1;
+}
+
+.bg-slide {
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background-size: cover;
+background-position: center;
+opacity: 0;
+transition: opacity 1s ease-in-out;
+}
+
+.bg-slide.active {
+opacity: 1;
+}
+
+/* Dark Overlay to make text readable over background photos */
+.overlay {
+position: fixed;
+top: 0;
+left: 0;
+width: 100vw;
+height: 100vh;
+background: rgba(0, 0, 0, 0.45);
+z-index: -1;
+}
+
+/* Music Floating Control Button */
+.music-control {
+position: fixed;
+bottom: 20px;
+right: 20px;
+background: var(--accent-gold);
+color: white;
+border: none;
+width: 50px;
+height: 50px;
+border-radius: 50%;
+cursor: pointer;
+z-index: 1000;
+display: flex;
+justify-content: center;
+align-items: center;
+font-size: 1.2rem;
+box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+transition: transform 0.3s;
+}
+
+.music-control:hover {
+transform: scale(1.1);
+}
+
+/* Sections Structure */
+section {
+min-height: 100vh;
 display: flex;
 flex-direction: column;
 justify-content: center;
 align-items: center;
-z-index: 1000;
-transition: opacity 0.8s ease, visibility 0.8s ease;
-cursor: pointer;
+text-align: center;
+padding: 80px 20px;
+position: relative;
 }
 
-#cover.hidden {
-opacity: 0;
-visibility: hidden;
-}
-
-.envelope-btn {
-margin-top: 20px;
-padding: 12px 28px;
-font-family: 'Cinzel', serif;
-font-size: 1rem;
-background: var(--accent-color);
-color: #fff;
-border: none;
-border-radius: 30px;
-letter-spacing: 2px;
-cursor: pointer;
-box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
-transition: transform 0.2s;
-}
-
-.envelope-btn:hover {
-transform: scale(1.05);
-}
-
-/* Main Container */
-.container {
-max-width: 800px;
-margin: 0 auto;
-padding: 40px 20px;
-}
-
-h1, h2, h3 {
-font-family: 'Cinzel', serif;
-}
-
-.couple-names {
-font-family: 'Great Vibes', cursive;
-font-size: 4rem;
-color: var(--primary-color);
-margin: 20px 0;
-}
-
-.parents {
-font-size: 0.9rem;
-color: #666;
-margin-bottom: 10px;
-}
-
-.section {
-margin: 60px 0;
-padding: 30px;
-background: #ffffff;
+.content-box {
+background: var(--card-bg);
+backdrop-filter: blur(8px);
+-webkit-backdrop-filter: blur(8px);
+padding: 40px;
 border-radius: 12px;
-box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+max-width: 750px;
+width: 100%;
+box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+border: 1px solid rgba(255,255,255,0.1);
 }
 
-/* Countdown Timer */
-.timer-container {
+h2.section-title {
+font-size: 3rem;
+color: #f4ebd0;
+margin-bottom: 15px;
+}
+
+.divider {
+width: 60px;
+height: 2px;
+background-color: var(--accent-gold);
+margin: 0 auto 25px auto;
+}
+
+/* Hero Header */
+.hero h4 {
+letter-spacing: 4px;
+text-transform: uppercase;
+font-weight: 400;
+font-size: 1.1rem;
+margin-bottom: 15px;
+color: #f4ebd0;
+}
+
+.hero h1 {
+font-size: 5rem;
+color: #fff;
+margin-bottom: 10px;
+text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+}
+
+.hero p {
+font-size: 1.2rem;
+letter-spacing: 2px;
+}
+
+/* Countdown */
+.countdown-wrapper {
 display: flex;
 justify-content: center;
+gap: 15px;
+margin-top: 30px;
+}
+
+.box {
+background: rgba(255, 255, 255, 0.1);
+padding: 15px;
+border-radius: 8px;
+min-width: 75px;
+border: 1px solid rgba(255,255,255,0.2);
+}
+
+.box span {
+display: block;
+font-size: 1.8rem;
+font-weight: 600;
+color: var(--accent-gold);
+}
+
+.box p {
+font-size: 0.75rem;
+text-transform: uppercase;
+letter-spacing: 1px;
+}
+
+/* Events Grid */
+.event-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
 gap: 20px;
 margin-top: 20px;
 }
 
-.time-box {
-background: #f4efe9;
-padding: 15px;
+.event-card {
+background: rgba(255, 255, 255, 0.08);
+padding: 25px;
 border-radius: 8px;
-min-width: 70px;
+text-align: left;
+border-left: 4px solid var(--accent-gold);
 }
 
-.time-box span {
+.event-card h3 {
+font-size: 1.5rem;
+color: #f4ebd0;
+margin-bottom: 10px;
+}
+
+.event-card p {
+font-size: 0.95rem;
+margin: 6px 0;
+}
+
+.event-card i {
+color: var(--accent-gold);
+margin-right: 8px;
+}
+
+/* Photo Gallery Grid */
+.gallery-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+gap: 15px;
+margin-top: 20px;
+}
+
+.gallery-item {
+overflow: hidden;
+border-radius: 8px;
+height: 200px;
+border: 1px solid rgba(255,255,255,0.2);
+}
+
+.gallery-item img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+transition: transform 0.4s ease;
+}
+
+.gallery-item img:hover {
+transform: scale(1.1);
+}
+
+/* RSVP Form */
+.rsvp-form {
+display: flex;
+flex-direction: column;
+gap: 15px;
+text-align: left;
+margin-top: 20px;
+}
+
+.form-group label {
 display: block;
-font-family: 'Cinzel', serif;
-font-size: 1.8rem;
-font-weight: bold;
-color: var(--primary-color);
-}
-
-.time-label {
-font-size: 0.75rem;
-text-transform: uppercase;
-letter-spacing: 1px;
-color: #777;
-}
-
-/* Details & Map Buttons */
-.btn {
-display: inline-block;
-padding: 10px 20px;
-margin: 8px;
-background-color: var(--primary-color);
-color: white;
-text-decoration: none;
-border-radius: 5px;
 font-size: 0.85rem;
-transition: background 0.3s;
+margin-bottom: 5px;
+color: #f4ebd0;
 }
 
-.btn:hover {
-background-color: #6e5232;
+.form-group input, .form-group select {
+width: 100%;
+padding: 10px;
+border: 1px solid rgba(255,255,255,0.3);
+border-radius: 4px;
+background: rgba(0,0,0,0.4);
+color: white;
+font-family: 'Poppins', sans-serif;
 }
 
-.quote {
-font-style: italic;
-color: #555;
-margin-bottom: 15px;
+.form-group input option {
+background: #222;
 }
 
-/* Audio Toggle */
-#music-control {
-position: fixed;
-bottom: 20px;
-right: 20px;
-background: var(--primary-color);
+.submit-btn {
+background: var(--accent-gold);
 color: white;
 border: none;
-border-radius: 50%;
-width: 45px;
-height: 45px;
+width: 100%;
+padding: 12px;
+font-size: 1rem;
+font-weight: 500;
+letter-spacing: 1px;
+border-radius: 4px;
 cursor: pointer;
-z-index: 100;
-box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+transition: background 0.3s;
+margin-top: 10px;
+}
+
+.submit-btn:hover {
+background: #b08d45;
+}
+
+footer {
+padding: 20px;
+font-size: 0.85rem;
+background: rgba(0,0,0,0.8);
+letter-spacing: 1px;
+}
+
+@media (max-width: 768px) {
+.hero h1 { font-size: 3.2rem; }
+.content-box { padding: 25px 15px; }
+h2.section-title { font-size: 2.3rem; }
 }
 </style>
 </head>
 <body>
 
-<!-- Background Audio -->
-<audio id="bg-music" loop>
-<source src="song.mp3" type="audio/mpeg">
+<!-- Fixed Background Image Slider (Changes photos as you scroll down sections) -->
+<div class="bg-slider">
+<div class="bg-slide active" style="background-image: url('https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=1950&q=80');"></div>
+<div class="bg-slide" style="background-image: url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1950&q=80');"></div>
+<div class="bg-slide" style="background-image: url('https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1950&q=80');"></div>
+<div class="bg-slide" style="background-image: url('https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=1950&q=80');"></div>
+<div class="bg-slide" style="background-image: url('https://images.unsplash.com/photo-1537633552985-df8429e8048b?auto=format&fit=crop&w=1950&q=80');"></div>
+</div>
+<div class="overlay"></div>
+
+<!-- Background Music Audio (Plays soft instrumental loop) -->
+<audio id="bgMusic" loop>
+<source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf7f6.mp3?filename=wedding-day-110290.mp3" type="audio/mpeg">
 </audio>
 
-<button id="music-control" onclick="toggleMusic()">🎵</button>
+<!-- Music Toggle Floating Button -->
+<button class="music-control" id="musicBtn" onclick="toggleMusic()" title="Play/Pause Music">
+<i class="fa-solid fa-music" id="musicIcon"></i>
+</button>
 
-<!-- Interactive Cover / Envelope Modal -->
-<div id="cover" onclick="openInvite()">
-<h2>YOU ARE INVITED</h2>
-<p style="margin-top: 10px; font-weight: 300;">Tap the envelope to open</p>
-<button class="envelope-btn">OPEN INVITATION</button>
-</div>
-
-<!-- Main Invitation Content -->
-<div class="container">
-
-<!-- Hero Section -->
-<section class="section">
-<p style="text-transform: uppercase; letter-spacing: 2px; font-size: 0.85rem; color: #888;">Together with their families</p>
-
-<div class="couple-names">Groom & Bride</div>
-
-<p class="parents">Groom: Son of [Father's Name] & [Mother's Name]</p>
-<p class="parents">Bride: Daughter of [Father's Name] & [Mother's Name]</p>
-
-<h3 style="margin-top: 25px; color: var(--primary-color);">JANUARY 10, 2027</h3>
-<p>Venue Name, Kochi, Kerala, India</p>
+<!-- Section 1: Hero / Save The Date -->
+<section id="section-0" class="hero">
+<h4>Save The Date</h4>
+<h1>Sophia & Liam</h1>
+<p><i class="fa-regular fa-calendar"></i> November 18, 2026</p>
 </section>
 
-<!-- Countdown Section -->
-<section class="section">
-<h2>Counting Down To Our Forever</h2>
-<div class="timer-container">
-<div class="time-box"><span id="days">00</span><div class="time-label">Days</div></div>
-<div class="time-box"><span id="hours">00</span><div class="time-label">Hours</div></div>
-<div class="time-box"><span id="minutes">00</span><div class="time-label">Minutes</div></div>
-<div class="time-box"><span id="seconds">00</span><div class="time-label">Seconds</div></div>
+<!-- Section 2: Story / Countdown -->
+<section id="section-1">
+<div class="content-box">
+<h2 class="section-title">We Are Getting Married</h2>
+<div class="divider"></div>
+<p>Together with our families, we joyfully invite you to celebrate our special day. Your love and company mean the world to us.</p>
+
+<div class="countdown-wrapper">
+<div class="box"><span id="days">00</span><p>Days</p></div>
+<div class="box"><span id="hours">00</span><p>Hours</p></div>
+<div class="box"><span id="mins">00</span><p>Mins</p></div>
+<div class="box"><span id="secs">00</span><p>Secs</p></div>
+</div>
 </div>
 </section>
 
-<!-- Story / Message Section -->
-<section class="section">
-<h2>Our Story</h2>
-<p class="quote">“At the touch of love everyone becomes a poet.” - Plato</p>
-<p style="line-height: 1.6; color: #555;">
-Cherished memories over the years have led us to this most joyful milestone.<br>
-We are thrilled to welcome you as we celebrate our union and begin our forever.
-</p>
+<!-- Section 3: Events -->
+<section id="section-2">
+<div class="content-box">
+<h2 class="section-title">When & Where</h2>
+<div class="divider"></div>
+
+<div class="event-grid">
+<div class="event-card">
+<h3>Ceremony</h3>
+<p><i class="fa-regular fa-clock"></i> 3:00 PM</p>
+<p><i class="fa-regular fa-calendar"></i> Nov 18, 2026</p>
+<p><i class="fa-solid fa-location-dot"></i> The Glasshouse Gardens</p>
+</div>
+<div class="event-card">
+<h3>Reception</h3>
+<p><i class="fa-regular fa-clock"></i> 6:30 PM</p>
+<p><i class="fa-regular fa-calendar"></i> Nov 18, 2026</p>
+<p><i class="fa-solid fa-location-dot"></i> Grand Azure Ballroom</p>
+</div>
+</div>
+</div>
 </section>
 
-<!-- Event Details -->
-<section class="section">
-<h2>Celebration Details</h2>
-<p style="margin-bottom: 20px;">We are delighted to celebrate our wedding with you.</p>
+<!-- Section 4: Gallery -->
+<section id="section-3">
+<div class="content-box">
+<h2 class="section-title">Our Moments</h2>
+<div class="divider"></div>
 
-<div style="background: #faf8f5; padding: 20px; border-radius: 8px; margin-bottom: 15px;">
-<h3>Wedding Ceremony & Celebration</h3>
-<p style="margin: 10px 0; color: #666;">Starts around 11:30 AM</p>
-<p style="font-weight: 500;">Venue Name</p>
-<p style="color: #777; font-size: 0.9rem;">City, State, Country</p>
-
-<div style="margin-top: 15px;">
-<a class="btn" href="https://maps.google.com" target="_blank">Google Maps</a>
-<a class="btn" href="https://maps.apple.com" target="_blank">Apple Maps</a>
+<div class="gallery-grid">
+<div class="gallery-item"><img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=600&q=80" alt="Gallery 1"></div>
+<div class="gallery-item"><img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=600&q=80" alt="Gallery 2"></div>
+<div class="gallery-item"><img src="https://images.unsplash.com/photo-1537633552985-df8429e8048b?auto=format&fit=crop&w=600&q=80" alt="Gallery 3"></div>
 </div>
 </div>
-
-<p style="font-size: 0.9rem; color: #666; margin-top: 15px;">
-<strong>Dress Code:</strong> Indo-Western fusion or Smart Casuals
-</p>
 </section>
 
-</div>
+<!-- Section 5: RSVP -->
+<section id="section-4">
+<div class="content-box">
+<h2 class="section-title">Be Our Guest</h2>
+<div class="divider"></div>
+<p>Please respond by October 20, 2026</p>
 
+<form class="rsvp-form" id="inviteForm" onsubmit="submitRSVP(event)">
+<div class="form-group">
+<label>Full Name</label>
+<input type="text" required placeholder="Enter your name">
+</div>
+<div class="form-group">
+<label>Will you attend?</label>
+<select required>
+<option value="" disabled selected>Select an option</option>
+<option value="yes">Accepts with pleasure</option>
+<option value="no">Declines with regret</option>
+</select>
+</div>
+<div class="form-group">
+<label>Number of Guests</label>
+<input type="number" min="1" max="4" value="1">
+</div>
+<button type="submit" class="submit-btn">Send RSVP</button>
+</form>
+</div>
+<footer>
+<p>&copy; 2026 Sophia & Liam. All Rights Reserved.</p>
+</footer>
+</section>
+
+<!-- JavaScript Handling Scroll Backgrounds, Music, and Countdown -->
 <script>
-// Open Cover & Play Music
-function openInvite() {
-document.getElementById('cover').classList.add('hidden');
-var audio = document.getElementById('bg-music');
-audio.play().catch(function(e) { console.log("Audio play blocked"); });
-}
+// 1. Dynamic Background Image Scroll Effect
+const sections = document.querySelectorAll("section");
+const slides = document.querySelectorAll(".bg-slide");
 
-// Toggle Audio
+window.addEventListener("scroll", () => {
+let current = "";
+sections.forEach((section, index) => {
+const sectionTop = section.offsetTop;
+if (pageYOffset >= sectionTop - window.innerHeight / 3) {
+current = index;
+}
+});
+
+slides.forEach((slide, index) => {
+slide.classList.remove("active");
+if (index === current) {
+slide.classList.add("active");
+}
+});
+});
+
+// 2. Music Play / Pause Control
+const bgMusic = document.getElementById("bgMusic");
+const musicIcon = document.getElementById("musicIcon");
+let isPlaying = false;
+
 function toggleMusic() {
-var audio = document.getElementById('bg-music');
-if (audio.paused) {
-audio.play();
+if (isPlaying) {
+bgMusic.pause();
+musicIcon.classList.remove("fa-pause");
+musicIcon.classList.add("fa-music");
 } else {
-audio.pause();
+bgMusic.play();
+musicIcon.classList.remove("fa-music");
+musicIcon.classList.add("fa-pause");
 }
+isPlaying = !isPlaying;
 }
 
-// Countdown Timer Logic
-const eventDate = new Date("Jan 10, 2027 11:30:00").getTime();
+// 3. Countdown Timer
+const targetDate = new Date("Nov 18, 2026 15:00:00").getTime();
 
-const timer = setInterval(function() {
+function runCountdown() {
 const now = new Date().getTime();
-const distance = eventDate - now;
+const difference = targetDate - now;
 
-if (distance < 0) {
-clearInterval(timer);
-document.getElementById("days").innerText = "00";
-document.getElementById("hours").innerText = "00";
-document.getElementById("minutes").innerText = "00";
-document.getElementById("seconds").innerText = "00";
-return;
+if (difference < 0) return;
+
+document.getElementById("days").innerText = Math.floor(difference / (1000 * 60 * 60 * 24));
+document.getElementById("hours").innerText = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+document.getElementById("mins").innerText = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+document.getElementById("secs").innerText = Math.floor((difference % (1000 * 60)) / 1000);
 }
 
-const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+setInterval(runCountdown, 1000);
+runCountdown();
 
-document.getElementById("days").innerText = days < 10 ? "0" + days : days;
-document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
-document.getElementById("minutes").innerText = minutes < 10 ? "0" + minutes : minutes;
-document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
-}, 1000);
+// 4. RSVP Form Handler
+function submitRSVP(e) {
+e.preventDefault();
+alert("Thank you! Your response has been sent.");
+document.getElementById("inviteForm").reset();
+}
 </script>
 </body>
 </html>
